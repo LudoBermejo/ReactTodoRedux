@@ -1,0 +1,13 @@
+exports[`AddTodoItem  renders properly 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}>
+  <input
+    placeholder="What do you need to do?"
+    type="text" />
+  <button
+    className="button expanded">
+    Add todo
+  </button>
+</form>
+`;

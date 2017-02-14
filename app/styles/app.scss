@@ -1,0 +1,12 @@
+@import "base/_variables";
+
+// Foundation
+@import 'base/_foundation-settings';
+@import "../../node_modules/foundation-sites/scss/foundation";
+@include foundation-everything;
+
+// Components
+@import 'components/_todo-item';
+@import 'components/_page-title';
+@import 'components/_container';
+

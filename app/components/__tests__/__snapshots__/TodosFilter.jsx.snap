@@ -1,0 +1,15 @@
+exports[`TodosFilter  renders properly 1`] = `
+<div>
+  <div>
+    <input
+      onChange={[Function]}
+      placeholder="Search in todos"
+      type="search" />
+  </div>
+  <label>
+    <input
+      onChange={[Function]}
+      type="checkbox" />
+  </label>
+</div>
+`;

@@ -1,0 +1,16 @@
+exports[`TodoItem renders properly 1`] = `
+<li
+  className="todo-item"
+  id="list_item_b5bb870f-c100-4c83-8254-5455fadab254"
+  onClick={[Function]}>
+  <input
+    checked={false}
+    type="checkbox" />
+  <p>
+    one
+  </p>
+  <p>
+    Created 14 02 2017 | 12:30
+  </p>
+</li>
+`;

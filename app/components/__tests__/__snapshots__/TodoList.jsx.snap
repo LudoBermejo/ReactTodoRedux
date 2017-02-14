@@ -1,0 +1,42 @@
+exports[`TodoList renders properly 1`] = `
+<div>
+  <div
+    className="todo-item"
+    id="list_item_aae1ad3a-c65f-4535-a89a-52032a3ebdb5"
+    onClick={[Function]}>
+    <div>
+      <input
+        checked={false}
+        type="checkbox" />
+    </div>
+    <div>
+      <p>
+        test_one
+      </p>
+      <p
+        className="todo__subtext">
+        Created 14 02 2017 | 13:14
+      </p>
+    </div>
+  </div>
+  <div
+    className="todo-item"
+    id="list_item_50a0a219-c64d-4842-81fb-210afa02df46"
+    onClick={[Function]}>
+    <div>
+      <input
+        checked={false}
+        type="checkbox" />
+    </div>
+    <div>
+      <p>
+        test_two
+      </p>
+      <p
+        className="todo__subtext">
+        Created 14 02 2017 | 13:14
+      </p>
+    </div>
+  </div>
+</div>
+`;
