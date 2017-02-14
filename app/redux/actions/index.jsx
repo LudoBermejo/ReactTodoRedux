@@ -24,18 +24,14 @@ export const completeLocationFetch = url => ({
   url
 });
 
-export const fetchLocation = () => {
+export const fetchLocation = () => (dispatch) => {
+  dispatch(startLocationFetch());
 
-  return (dispatch, getState) => {
-    dispatch(startLocationFetch());
-
-    axios.get('http://ipinfo.io')
+  axios.get('http://ipinfo.io')
       .then((res) => {
         const loc = res.data.loc;
         const baseURL = `http://maps.google.com?q=${loc}`;
         dispatch(completeLocationFetch(baseURL));
       });
-  }
-
 };
 
