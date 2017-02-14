@@ -15,8 +15,7 @@ const searchReducer = function (state = defaultSearchState, action) {
     case 'CHANGE_SEARCH_TEXT':
       return {
         ...state,
-        searchText: action.searchText,
-        filterByComplete: action.filterByComplete
+        ...action.data
       };
     default: return state;
   }
@@ -53,20 +52,27 @@ store.subscribe(() => {
 
 store.dispatch({
   type: 'CHANGE_SEARCH_TEXT',
-  searchText: 'My text',
-  filterByComplete: false
+  data: {
+    searchText: 'My text',
+    filterByComplete: false
+
+  }
 });
 
 store.dispatch({
   type: 'CHANGE_SEARCH_TEXT',
-  searchText: 'My text2',
-  filterByComplete: false
+  data: {
+    searchText: 'My text2',
+    filterByComplete: false
+  }
 });
 
 store.dispatch({
   type: 'CHANGE_SEARCH_TEXT',
-  searchText: 'My text3',
-  filterByComplete: true
+  data: {
+    searchText: 'My text3',
+    filterByComplete: true
+  }
 });
 
 store.dispatch({
