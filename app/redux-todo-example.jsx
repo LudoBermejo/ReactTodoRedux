@@ -2,110 +2,24 @@ import uuid from 'uuid';
 import moment from 'moment';
 import axios from 'axios';
 
-import { createStore, compose, combineReducers } from 'redux';
+import store from './redux/store/configureStore';
+import {
+  changeSearch,
+  addTodo,
+  removeTodo,
+  startLocationFetch,
+  completeLocationFetch
+} from './redux/actions/index';
 
 console.log('Starting redux example');
-
-let store = null;
-
-// Reducers
-const defaultSearchState = {
-  searchText: '',
-  filterByComplete: false
-};
-
-const searchReducer = function (state = defaultSearchState, action) {
-  switch (action.type) {
-    case 'CHANGE_SEARCH':
-      return {
-        ...state,
-        ...action.data
-      };
-    default: return state;
-  }
-};
-
-const changeSearch = data => ({
-  type: 'CHANGE_SEARCH',
-  data
-});
-
-
-const todoListReducer = function (state = [], action) {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        action.todo
-      ];
-    case 'REMOVE_TODO':
-      return state.filter(b => b.id !== action.id);
-    default: return state;
-  }
-};
-
-const addTodo = todo => ({
-  type: 'ADD_TODO',
-  todo
-});
-
-const removeTodo = id => ({
-  type: 'REMOVE_TODO',
-  id
-});
-
-
-// Map reducer
-const mapReducer = function (state = {
-  isFetching: false,
-  url: undefined
-}, action) {
-  switch (action.type) {
-    case 'START_LOCATION_FETCH':
-      return {
-        isFetching: true,
-        url: undefined
-      };
-    case 'COMPLETE_LOCATION_FETCH':
-      return {
-        isFetching: false,
-        url: action.url
-      };
-    default:
-      return state;
-  }
-};
-
-const startLocationFetch = () => ({
-  type: 'START_LOCATION_FETCH'
-});
-
-const completeLocationFetch = url => ({
-  type: 'COMPLETE_LOCATION_FETCH',
-  url
-});
-
-
-
-const reducer = combineReducers({
-  search: searchReducer,
-  todoList: todoListReducer,
-  map: mapReducer
-});
-
-
-store = createStore(reducer, compose(
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-));
-
 
 // Subscribe to changes
 store.subscribe(() => {
   const state = store.getState();
-  document.getElementById('redux').innerHTML = state.searchText;
+  document.getElementById('redux').innerHTML = state.search.searchText;
   if (state.map.isFetching) {
     document.getElementById('map').innerHTML = 'Loading';
-  } else if(state.map.url) {
+  } else if (state.map.url) {
     document.getElementById('map').innerHTML = `<a href="${state.map.url}">View your location</a>`;
   }
 });
