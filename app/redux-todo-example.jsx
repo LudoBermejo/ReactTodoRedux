@@ -1,4 +1,4 @@
-import {createStore} from 'redux';
+import { createStore } from 'redux';
 
 console.log('Starting redux example');
 
@@ -9,9 +9,24 @@ const defaultState = {
 };
 
 const store = createStore((state = defaultState, action) => {
-  return state;
+  switch (action.type) {
+    case 'CHANGE_SEARCH_TEXT':
+      return {
+        ...state,
+        searchText: action.searchText
+      };
+
+    default: return state;
+  }
+});
+
+store.dispatch({
+  type: 'CHANGE_SEARCH_TEXT',
+  searchText: 'My text'
 });
 
 module.exports = {
   todoAppState: store.getState()
 };
+
+console.log(store.getState());
