@@ -26,6 +26,11 @@ const store = createStore((state = defaultState, action) => {
           action.todo
         ]
       };
+    case 'REMOVE_TODO':
+      return {
+        ...state,
+        todoList: state.todoList.filter(b => b.id !== action.id )
+      };
 
     default: return state;
   }
@@ -64,6 +69,20 @@ store.dispatch({
   }
 });
 
+store.dispatch({
+  type: 'ADD_TODO',
+  todo: {
+    id: uuid(),
+    value: 'Second element',
+    completed: false,
+    createdAt: moment().unix()
+  }
+});
+
+store.dispatch({
+  type: 'REMOVE_TODO',
+  id: store.getState().todoList[0].id
+});
 
 module.exports = {
   todoAppState: store.getState()
