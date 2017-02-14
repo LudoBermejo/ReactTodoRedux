@@ -1,4 +1,12 @@
-import { combineReducers, createStore, compose } from 'redux';
+
+import {
+  combineReducers,
+  createStore,
+  compose,
+  applyMiddleware} from 'redux';
+
+import ReduxThunk from 'redux-thunk';
+
 import {
   searchReducer,
   todoListReducer,
@@ -14,6 +22,7 @@ const reducer = combineReducers({
 
 
 const store = createStore(reducer, compose(
+  applyMiddleware(ReduxThunk),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 

@@ -1,6 +1,5 @@
 import uuid from 'uuid';
 import moment from 'moment';
-import axios from 'axios';
 
 import store from './redux/store/configureStore';
 import {
@@ -8,7 +7,8 @@ import {
   addTodo,
   removeTodo,
   startLocationFetch,
-  completeLocationFetch
+  completeLocationFetch,
+  fetchLocation
 } from './redux/actions/index';
 
 console.log('Starting redux example');
@@ -55,18 +55,7 @@ store.dispatch(addTodo({
 
 store.dispatch(removeTodo(store.getState().todoList[0].id));
 
-const fetchLocation = () => {
-  store.dispatch(startLocationFetch());
-
-  axios.get('http://ipinfo.io')
-    .then((res) => {
-      const loc = res.data.loc;
-      const baseURL = `http://maps.google.com?q=${loc}`;
-      store.dispatch(completeLocationFetch(baseURL));
-    });
-};
-
-fetchLocation();
+store.dispatch(fetchLocation());
 
 module.exports = {
   todoAppState: store.getState()

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const changeSearch = data => ({
   type: 'CHANGE_SEARCH',
   data
@@ -21,4 +23,19 @@ export const completeLocationFetch = url => ({
   type: 'COMPLETE_LOCATION_FETCH',
   url
 });
+
+export const fetchLocation = () => {
+
+  return (dispatch, getState) => {
+    dispatch(startLocationFetch());
+
+    axios.get('http://ipinfo.io')
+      .then((res) => {
+        const loc = res.data.loc;
+        const baseURL = `http://maps.google.com?q=${loc}`;
+        dispatch(completeLocationFetch(baseURL));
+      });
+  }
+
+};
 
