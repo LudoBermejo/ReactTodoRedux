@@ -5,6 +5,7 @@ import { createStore, compose, combineReducers } from 'redux';
 
 console.log('Starting redux example');
 
+// Reducers
 const defaultSearchState = {
   searchText: '',
   filterByComplete: false
@@ -12,7 +13,7 @@ const defaultSearchState = {
 
 const searchReducer = function (state = defaultSearchState, action) {
   switch (action.type) {
-    case 'CHANGE_SEARCH_TEXT':
+    case 'CHANGE_SEARCH':
       return {
         ...state,
         ...action.data
@@ -40,9 +41,27 @@ const reducer = combineReducers({
   todoList: todoListReducer
 });
 
+
 const store = createStore(reducer, compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
+
+// Action generators
+const changeSearch = data => ({
+  type: 'CHANGE_SEARCH',
+  data
+});
+
+const addTodo = todo => ({
+  type: 'ADD_TODO',
+  todo
+});
+
+const removeTodo = id => ({
+  type: 'REMOVE_TODO',
+  id
+});
+
 
 // Subscribe to changes
 store.subscribe(() => {
@@ -50,55 +69,37 @@ store.subscribe(() => {
   document.getElementById('redux').innerHTML = state.searchText;
 });
 
-store.dispatch({
-  type: 'CHANGE_SEARCH_TEXT',
-  data: {
-    searchText: 'My text',
-    filterByComplete: false
+store.dispatch(changeSearch({
+  searchText: 'My text',
+  filterByComplete: false
+}));
 
-  }
-});
+store.dispatch(changeSearch({
+  searchText: 'My text2',
+  filterByComplete: false
+}));
 
-store.dispatch({
-  type: 'CHANGE_SEARCH_TEXT',
-  data: {
-    searchText: 'My text2',
-    filterByComplete: false
-  }
-});
+store.dispatch(changeSearch({
+  searchText: 'My text3',
+  filterByComplete: false
+}));
 
-store.dispatch({
-  type: 'CHANGE_SEARCH_TEXT',
-  data: {
-    searchText: 'My text3',
-    filterByComplete: true
-  }
-});
-
-store.dispatch({
-  type: 'ADD_TODO',
-  todo: {
+store.dispatch(addTodo({
     id: uuid(),
     value: 'First element',
     completed: false,
     createdAt: moment().unix()
-  }
-});
+}));
 
-store.dispatch({
-  type: 'ADD_TODO',
-  todo: {
-    id: uuid(),
-    value: 'Second element',
-    completed: false,
-    createdAt: moment().unix()
-  }
-});
+store.dispatch(addTodo({
+  id: uuid(),
+  value: 'Second element',
+  completed: false,
+  createdAt: moment().unix()
+}));
 
-store.dispatch({
-  type: 'REMOVE_TODO',
-  id: store.getState().todoList[0].id
-});
+store.dispatch(removeTodo(store.getState().todoList[0].id));
+
 
 module.exports = {
   todoAppState: store.getState()
