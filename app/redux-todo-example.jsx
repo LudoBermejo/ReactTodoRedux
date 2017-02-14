@@ -1,40 +1,47 @@
 import uuid from 'uuid';
 import moment from 'moment';
 
-import { createStore, compose } from 'redux';
+import { createStore, compose, combineReducers } from 'redux';
 
 console.log('Starting redux example');
 
-const defaultState = {
+const defaultSearchState = {
   searchText: '',
-  filterByComplete: false,
-  todoList: []
+  filterByComplete: false
 };
 
-const store = createStore((state = defaultState, action) => {
+const searchReducer = function (state = defaultSearchState, action) {
   switch (action.type) {
     case 'CHANGE_SEARCH_TEXT':
       return {
         ...state,
-        searchText: action.searchText
+        searchText: action.searchText,
+        filterByComplete: action.filterByComplete
       };
-    case 'ADD_TODO':
-      return {
-        ...state,
-        todoList: [
-          ...state.todoList,
-          action.todo
-        ]
-      };
-    case 'REMOVE_TODO':
-      return {
-        ...state,
-        todoList: state.todoList.filter(b => b.id !== action.id )
-      };
-
     default: return state;
   }
-}, compose(
+};
+
+const todoListReducer = function (state = [], action) {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [
+        ...state,
+        action.todo
+      ];
+    case 'REMOVE_TODO':
+      return state.filter(b => b.id !== action.id);
+    default: return state;
+  }
+};
+
+
+const reducer = combineReducers({
+  search: searchReducer,
+  todoList: todoListReducer
+});
+
+const store = createStore(reducer, compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 
@@ -46,17 +53,20 @@ store.subscribe(() => {
 
 store.dispatch({
   type: 'CHANGE_SEARCH_TEXT',
-  searchText: 'My text'
+  searchText: 'My text',
+  filterByComplete: false
 });
 
 store.dispatch({
   type: 'CHANGE_SEARCH_TEXT',
-  searchText: 'My text2'
+  searchText: 'My text2',
+  filterByComplete: false
 });
 
 store.dispatch({
   type: 'CHANGE_SEARCH_TEXT',
-  searchText: 'My text3'
+  searchText: 'My text3',
+  filterByComplete: true
 });
 
 store.dispatch({
