@@ -56,7 +56,7 @@ export default class TodoApp extends React.Component {
             <div className="container">
               <TodosFilter onSearch={this.search} />
               <TodoList />
-              <AddTodoItem onAddItem={this.addTodoItem} />
+              <AddTodoItem />
             </div>
           </div>
         </div>

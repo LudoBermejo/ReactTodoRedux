@@ -1,12 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as ReduxActions from 'actions';
 
-const AddTodoItem = (props) => {
+export const AddTodoItem = (props) => {
   let textInput = '';
+
+  const { dispatch } = props;
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (textInput.value) {
-      props.onAddItem(textInput.value);
+      dispatch(ReduxActions.addTodo(textInput.value));
       textInput.value = '';
     }
   };
@@ -25,8 +29,4 @@ const AddTodoItem = (props) => {
   );
 };
 
-AddTodoItem.propTypes = {
-  onAddItem: React.PropTypes.func.isRequired
-};
-
-export default AddTodoItem;
+export default connect()(AddTodoItem);
