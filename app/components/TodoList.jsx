@@ -5,7 +5,7 @@ import TodoItem from 'TodoItem';
 import TodoAPI from 'TodoAPI';
 
 
-const TodoList = (props) => {
+export const TodoList = (props) => {
   const renderList = (listOfTodos) => {
 
 
@@ -29,8 +29,8 @@ const TodoList = (props) => {
 
 TodoList.propTypes = {
   todoList: React.PropTypes.array.isRequired,
-  searchText: React.PropTypes.string.isRequired,
-  showCompleted: React.PropTypes.bool.isRequired
+  searchText: React.PropTypes.string,
+  showCompleted: React.PropTypes.bool
 };
 
 export default connect(
