@@ -34,12 +34,22 @@ describe('Reducers', () => {
     it('should add todos', () => {
       const action = {
         type: 'ADD_TODOS',
-        todos: ['Add multiple todos', 'Multiple']
+        todos: [{
+          id: uuid(),
+          value: 'A text',
+          completed: false,
+          createdAt: moment().unix()
+        }, {
+          id: uuid(),
+          value: 'A text 2',
+          completed: false,
+          createdAt: moment().unix()
+        }]
       };
 
-      const res = reduxReducers.todoListReducer([], df(action));
+      const res = reduxReducers.todoListReducer(df([]), df(action));
       expect(res.length).toBe(2);
-      expect(res[0].value).toBe(action.todos);
+      expect(res).toEqual(action.todos);
     });
 
     it('should add todo', () => {
@@ -48,7 +58,7 @@ describe('Reducers', () => {
         text: 'A simple todo'
       };
 
-      const res = reduxReducers.todoListReducer([], df(action));
+      const res = reduxReducers.todoListReducer(df([]), df(action));
       expect(res.length).toBe(1);
       expect(res[0].value).toBe(action.text);
     });
