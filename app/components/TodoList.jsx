@@ -2,10 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import TodoItem from 'TodoItem';
+import TodoAPI from 'TodoAPI';
 
 
-export const TodoList = (props) => {
+const TodoList = (props) => {
   const renderList = (listOfTodos) => {
+
+
     if (listOfTodos.length) {
       return listOfTodos.map(item => <TodoItem key={item.id} {...item} />);
     }
@@ -14,20 +17,22 @@ export const TodoList = (props) => {
     );
   };
 
-  const { todoList } = props;
+  const { todoList, searchText, showCompleted } = props;
+  const filteredTodo = TodoAPI.searchTodos(todoList, showCompleted, searchText );
+
   return (
     <div>
-      {renderList(todoList)}
+      {renderList(filteredTodo)}
     </div>
   );
 };
 
 TodoList.propTypes = {
-  todoList: React.PropTypes.array.isRequired
+  todoList: React.PropTypes.array.isRequired,
+  searchText: React.PropTypes.string.isRequired,
+  showCompleted: React.PropTypes.string.isRequired
 };
 
 export default connect(
-  state => ({
-    todoList: state.todoList
-  })
+  state => state
 )(TodoList);

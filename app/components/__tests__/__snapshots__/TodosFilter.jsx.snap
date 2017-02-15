@@ -5,10 +5,12 @@ exports[`TodosFilter  renders properly 1`] = `
     <input
       onChange={[Function]}
       placeholder="Search in todos"
-      type="search" />
+      type="search"
+      value={undefined} />
   </div>
   <label>
     <input
+      checked={undefined}
       onChange={[Function]}
       type="checkbox" />
      Show completed todos

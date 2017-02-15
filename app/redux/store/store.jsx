@@ -10,8 +10,8 @@ import * as reduxReducers from 'reducers';
 
 const configure = (initialState = {}) => {
   const reducer = combineReducers({
-    searchReducer: reduxReducers.searchReducer,
-    showCompleteReducer: reduxReducers.showCompleteReducer,
+    searchText: reduxReducers.searchReducer,
+    showCompleted: reduxReducers.showCompleteReducer,
     todoList: reduxReducers.todoListReducer
   });
 
