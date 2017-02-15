@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import TodoItem from 'TodoItem';
 
 
-const TodoList = (props) => {
+export const TodoList = (props) => {
   const renderList = (listOfTodos) => {
     if (listOfTodos.length) {
       return listOfTodos.map(item => <TodoItem key={item.id} {...item} />);

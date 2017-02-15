@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import moment from 'moment';
 
 import { shallow, mount } from 'enzyme';
-import TodoItem from 'TodoItem';
+import { TodoItem } from 'TodoItem';
 import uuid from 'node-uuid';
 
 describe('TodoItem', () => {
@@ -15,7 +15,7 @@ describe('TodoItem', () => {
       completed: false
     };
 
-    const todoItem = renderer.create(<TodoItem {...staticValue} onChangeComplete={() => {}} />).toJSON();
+    const todoItem = renderer.create(<TodoItem {...staticValue} />).toJSON();
     expect(todoItem).toMatchSnapshot();
   });
 
@@ -28,11 +28,11 @@ describe('TodoItem', () => {
       completed: false
     };
 
-    const todoItem = shallow(<TodoItem {...staticValue} onChangeComplete={() => {}} />);
+    const todoItem = shallow(<TodoItem {...staticValue} />);
     expect(todoItem.find('input').length).toBe(1);
   });
 
-  describe('Todo item change call prop function', () => {
+  describe('should dispatch TOGGLE_TODO action on click', () => {
     const uuidUnique = uuid();
     const staticValue = {
       id: uuidUnique,
@@ -42,11 +42,14 @@ describe('TodoItem', () => {
     };
 
     const mock = jest.fn();
-    const todoItem = mount(<TodoItem {...staticValue} onChangeComplete={mock} />);
+    const todoItem = mount(<TodoItem {...staticValue} dispatch={mock} />);
 
     todoItem.simulate('click');
 
-    expect(mock).toHaveBeenCalledWith(uuidUnique);
+    expect(mock).toHaveBeenCalledWith({
+      type: 'TOGGLE_TODO',
+      id: uuidUnique
+    });
   });
 });
 

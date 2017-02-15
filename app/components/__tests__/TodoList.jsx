@@ -1,11 +1,12 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
-import uuid from 'node-uuid';
+import { mount, shallow } from 'enzyme';
 import moment from 'moment';
+import uuid from 'node-uuid';
+import React from 'react';
+import { Provider } from 'react-redux';
 
-import TodoList from 'TodoList';
-import TodoItem from 'TodoItem';
+import * as ReduxStore from 'reduxStore';
+import ConnectedTodoList, { TodoList } from 'TodoList';
+import ConnectedTodoItem, { TodoItem } from 'TodoItem';
 
 describe('TodoList', () => {
   it('renders properly', () => {
@@ -24,39 +25,21 @@ describe('TodoList', () => {
       }
     ];
 
-    const todoList = renderer.create(<TodoList todoList={values} onChangeItemComplete={() => {}} />).toJSON();
-    expect(todoList).toMatchSnapshot();
-  });
-
-  describe('List items properly', () => {
-    it('renders all list of items', () => {
-      const values = [
-        {
-          id: uuid(),
-          value: 'test_one',
-          createdAt: moment().unix(),
-          completed: false
-        },
-        {
-          id: uuid(),
-          value: 'test_two',
-          createdAt: moment().unix(),
-          completed: false
-        }
-      ];
-
-      const todoList = mount(<TodoList todoList={values} onChangeItemComplete={() => {}} />);
-      expect(todoList.find(TodoItem).length).toBe(2);
+    const store = ReduxStore.configure({
+      todoList: values
     });
 
-    it('shows message when no items in list', () => {
-      const todoList = mount(<TodoList todoList={[]} onChangeItemComplete={() => {}} />);
-      expect(todoList.find('p').length).toBe(1);
-      expect(todoList.find(TodoItem).length).toBe(0);
-    })
+    const todoList = mount(
+      <Provider store={store}>
+        <ConnectedTodoList />
+      </Provider>);
+    expect(todoList.find(ConnectedTodoItem).length).toBe(2);
   });
 
-
-
+  it('shows message when no items in list', () => {
+    const todoList = mount(<TodoList todoList={[]} />);
+    expect(todoList.find('p').length).toBe(1);
+    expect(todoList.find(TodoItem).length).toBe(0);
+  });
 });
 

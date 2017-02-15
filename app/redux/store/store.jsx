@@ -7,17 +7,26 @@ import ReduxThunk from 'redux-thunk';
 
 import * as reduxReducers from 'reducers';
 
-const reducer = combineReducers({
-  searchReducer: reduxReducers.searchReducer,
-  showCompleteReducer: reduxReducers.showCompleteReducer,
-  todoList: reduxReducers.todoListReducer
-});
 
-const store = createStore(reducer, compose(
-  applyMiddleware(ReduxThunk),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-));
+const configure = (initialState = {}) => {
+  const reducer = combineReducers({
+    searchReducer: reduxReducers.searchReducer,
+    showCompleteReducer: reduxReducers.showCompleteReducer,
+    todoList: reduxReducers.todoListReducer
+  });
 
+  const store = createStore(
+    reducer,
+    initialState,
+    compose(
+      applyMiddleware(ReduxThunk),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
+  );
 
-export default store;
+  return store;
+}
 
+export {
+  configure
+}

@@ -3,7 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import * as reduxActions from 'actions';
 
-const TodoItem = (props) => {
+export const TodoItem = (props) => {
   const { id, value, completed, createdAt, completedAt, dispatch } = props;
   const todoClassName = completed ? 'todo-item todo-completed' : 'todo-item';
   function renderCreatedAt(createdAt, completedAt) {
