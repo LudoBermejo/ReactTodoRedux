@@ -20,13 +20,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 );
-
-import * as reduxActions from 'actions';
-
-store.subscribe(() => {
-  console.log('State', store.getState());
-});
-
-store.dispatch(reduxActions.addTodo('pepe'));
-store.dispatch(reduxActions.setTextSearch('p'));
-store.dispatch(reduxActions.toggleShowCompleted());

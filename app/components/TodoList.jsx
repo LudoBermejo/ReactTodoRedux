@@ -30,7 +30,7 @@ const TodoList = (props) => {
 TodoList.propTypes = {
   todoList: React.PropTypes.array.isRequired,
   searchText: React.PropTypes.string.isRequired,
-  showCompleted: React.PropTypes.string.isRequired
+  showCompleted: React.PropTypes.bool.isRequired
 };
 
 export default connect(
