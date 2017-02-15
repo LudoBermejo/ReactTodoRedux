@@ -44,7 +44,7 @@ TodoItem.propTypes = {
   id: React.PropTypes.string.isRequired,
   value: React.PropTypes.string.isRequired,
   completed: React.PropTypes.bool.isRequired,
-  createdAt: React.PropTypes.number.isRequired,
+  createdAt: React.PropTypes.number,
   completedAt: React.PropTypes.number
 };
 

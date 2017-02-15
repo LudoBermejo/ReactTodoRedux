@@ -30,6 +30,18 @@ describe('Reducers', () => {
   });
 
   describe('todoReducer', () => {
+
+    it('should add todos', () => {
+      const action = {
+        type: 'ADD_TODOS',
+        todos: ['Add multiple todos', 'Multiple']
+      };
+
+      const res = reduxReducers.todoListReducer([], df(action));
+      expect(res.length).toBe(2);
+      expect(res[0].value).toBe(action.todos);
+    });
+
     it('should add todo', () => {
       const action = {
         type: 'ADD_TODO',

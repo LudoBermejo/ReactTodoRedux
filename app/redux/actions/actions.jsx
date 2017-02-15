@@ -14,6 +14,11 @@ export const addTodo = text => ({
   text
 });
 
+export const addTodos = todos => ({
+  type: 'ADD_TODOS',
+  todos
+});
+
 export const toggleTodo = id => ({
   type: 'TOGGLE_TODO',
   id

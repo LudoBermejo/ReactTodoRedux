@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import TodoItem from 'TodoItem';
 import TodoAPI from 'TodoAPI';
 
-
 export const TodoList = (props) => {
   const renderList = (listOfTodos) => {
 

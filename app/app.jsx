@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 
 import TodoApp from 'TodoApp';
 import * as ReduxStore from 'reduxStore';
+import * as ReduxActions from 'actions';
+
+import TodoAPI from 'TodoAPI';
 
 // Load foundation
 $(document).foundation();
@@ -12,6 +15,14 @@ $(document).foundation();
 import 'AppStyles';
 
 const store = ReduxStore.configure();
+
+store.dispatch(ReduxActions.addTodos(TodoAPI.getTodos()));
+
+
+store.subscribe(() => {
+  const state = store.getState();
+  TodoAPI.setTodos(state.todoList);
+});
 
 ReactDOM.render(
   <Provider store={store}>

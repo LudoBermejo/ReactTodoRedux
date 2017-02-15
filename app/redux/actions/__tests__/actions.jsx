@@ -45,6 +45,18 @@ describe('Rexux actions ', () => {
     expect(res).toEqual(action);
   });
 
+  it('should generate add todos actions', () => {
+
+    const action = {
+      type: 'ADD_TODOS',
+      todos: ['44', '55']
+    }
+
+    const res = reduxActions.addTodos(action.todos);
+    expect(res).toEqual(action);
+  });
+
+
 
 });
 

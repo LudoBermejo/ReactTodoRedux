@@ -21,6 +21,11 @@ export const showCompleteReducer = function (state = false, action) {
 
 export const todoListReducer = function (state = [], action) {
   switch (action.type) {
+    case 'ADD_TODOS':
+      return [
+        ...state,
+        ...action.todos
+      ];
     case 'ADD_TODO':
       return [
         ...state, {
