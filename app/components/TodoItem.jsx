@@ -1,8 +1,10 @@
 import React from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import * as reduxActions from 'actions';
 
 const TodoItem = (props) => {
-  const { id, value, completed, createdAt, completedAt } = props;
+  const { id, value, completed, createdAt, completedAt, dispatch } = props;
   const todoClassName = completed ? 'todo-item todo-completed' : 'todo-item';
   function renderCreatedAt(createdAt, completedAt) {
     if (!completedAt) {
@@ -14,8 +16,9 @@ const TodoItem = (props) => {
 
   function onChangeComplete(e) {
     e.preventDefault();
-    props.onChangeComplete(id);
+    dispatch(reduxActions.toggleTodo(id));
   }
+
   return (
     <div
       id={`list_item_${id}`}
@@ -42,8 +45,7 @@ TodoItem.propTypes = {
   value: React.PropTypes.string.isRequired,
   completed: React.PropTypes.bool.isRequired,
   createdAt: React.PropTypes.number.isRequired,
-  completedAt: React.PropTypes.number,
-  onChangeComplete: React.PropTypes.func.isRequired
+  completedAt: React.PropTypes.number
 };
 
-export default TodoItem;
+export default connect()(TodoItem);

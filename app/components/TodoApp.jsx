@@ -13,7 +13,6 @@ export default class TodoApp extends React.Component {
 
     this.addTodoItem = this.addTodoItem.bind(this);
     this.search = this.search.bind(this);
-    this.changeCompleteTodo = this.changeCompleteTodo.bind(this);
     this.state = {
       searchText: '',
       filterByComplete: false,
@@ -44,18 +43,6 @@ export default class TodoApp extends React.Component {
     });
   }
 
-  changeCompleteTodo(id) {
-    this.setState({
-      todoList: this.state.todoList.map((item) => {
-        const todo = item;
-        if (todo.id === id) {
-          todo.completed = !item.completed;
-          todo.completedAt = todo.completed ? moment().unix() : undefined;
-        }
-        return todo;
-      })
-    });
-  }
 
   render() {
     const { todoList, searchText, filterByComplete } = this.state;
@@ -68,7 +55,7 @@ export default class TodoApp extends React.Component {
           <div className="column small-centered small-11 medium-6 large-5">
             <div className="container">
               <TodosFilter onSearch={this.search} />
-              <TodoList todoList={filteredTodo} onChangeItemComplete={this.changeCompleteTodo} />
+              <TodoList />
               <AddTodoItem onAddItem={this.addTodoItem} />
             </div>
           </div>
