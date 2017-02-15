@@ -1,7 +1,7 @@
 exports[`TodoItem renders properly 1`] = `
 <div
   className="todo-item"
-  id="list_item_90a7e3bf-8c29-453a-a852-a7894c103861"
+  id="list_item_dddd1e60-e240-4aab-a87c-de5cf7961933"
   onClick={[Function]}>
   <div>
     <input
@@ -14,7 +14,7 @@ exports[`TodoItem renders properly 1`] = `
     </p>
     <p
       className="todo__subtext">
-      Created 15 02 2017 | 14:27
+      Created 15 02 2017 | 15:02
     </p>
   </div>
 </div>
