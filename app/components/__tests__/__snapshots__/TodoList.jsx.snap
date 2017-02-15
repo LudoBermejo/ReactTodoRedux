@@ -2,7 +2,7 @@ exports[`TodoList renders properly 1`] = `
 <div>
   <div
     className="todo-item"
-    id="list_item_aae1ad3a-c65f-4535-a89a-52032a3ebdb5"
+    id="list_item_7f614587-d604-4993-adce-b627f894f80f"
     onClick={[Function]}>
     <div>
       <input
@@ -15,13 +15,13 @@ exports[`TodoList renders properly 1`] = `
       </p>
       <p
         className="todo__subtext">
-        Created 14 02 2017 | 13:14
+        Created 15 02 2017 | 11:55
       </p>
     </div>
   </div>
   <div
     className="todo-item"
-    id="list_item_50a0a219-c64d-4842-81fb-210afa02df46"
+    id="list_item_77527ba7-a353-438a-ac45-49ef44d3f108"
     onClick={[Function]}>
     <div>
       <input
@@ -34,7 +34,7 @@ exports[`TodoList renders properly 1`] = `
       </p>
       <p
         className="todo__subtext">
-        Created 14 02 2017 | 13:14
+        Created 15 02 2017 | 11:55
       </p>
     </div>
   </div>

@@ -14,4 +14,3 @@ ReactDOM.render(
   document.getElementById('app')
 );
 
-import { todoAppState } from './redux-todo-example';

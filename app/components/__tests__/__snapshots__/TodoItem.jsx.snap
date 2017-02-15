@@ -1,16 +1,21 @@
 exports[`TodoItem renders properly 1`] = `
-<li
+<div
   className="todo-item"
-  id="list_item_b5bb870f-c100-4c83-8254-5455fadab254"
+  id="list_item_90a7e3bf-8c29-453a-a852-a7894c103861"
   onClick={[Function]}>
-  <input
-    checked={false}
-    type="checkbox" />
-  <p>
-    one
-  </p>
-  <p>
-    Created 14 02 2017 | 12:30
-  </p>
-</li>
+  <div>
+    <input
+      checked={false}
+      type="checkbox" />
+  </div>
+  <div>
+    <p>
+      one
+    </p>
+    <p
+      className="todo__subtext">
+      Created 15 02 2017 | 14:27
+    </p>
+  </div>
+</div>
 `;

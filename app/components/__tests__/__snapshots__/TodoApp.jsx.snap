@@ -1,37 +1,51 @@
 exports[`Todo app renders properly 1`] = `
 <div>
-  <h1>
-    Todo
+  <h1
+    className="page-title">
+    Todo App
   </h1>
-  <div>
-    <div>
-      <input
-        onChange={[Function]}
-        placeholder="Search in todos"
-        type="search" />
+  <div
+    className="row">
+    <div
+      className="column small-centered small-11 medium-6 large-5">
+      <div
+        className="container">
+        <div
+          className="container__header">
+          <div>
+            <input
+              onChange={[Function]}
+              placeholder="Search in todos"
+              type="search" />
+          </div>
+          <label>
+            <input
+              onChange={[Function]}
+              type="checkbox" />
+             Show completed todos
+          </label>
+        </div>
+        <div>
+          <p
+            className="container__message">
+            No items to show
+          </p>
+        </div>
+        <div
+          className="container__footer">
+          <form
+            onSubmit={[Function]}>
+            <input
+              placeholder="What do you need to do?"
+              type="text" />
+            <button
+              className="button expanded">
+              Add todo
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-    <label>
-      <input
-        onChange={[Function]}
-        type="checkbox" />
-    </label>
   </div>
-  <div>
-    <h1>
-      List of items:
-    </h1>
-    <ul />
-  </div>
-  <form
-    className="form"
-    onSubmit={[Function]}>
-    <input
-      placeholder="What do you need to do?"
-      type="text" />
-    <button
-      className="button expanded">
-      Add todo
-    </button>
-  </form>
 </div>
 `;

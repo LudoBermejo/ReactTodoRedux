@@ -29,7 +29,7 @@ describe('TodoItem', () => {
     };
 
     const todoItem = shallow(<TodoItem {...staticValue} onChangeComplete={() => {}} />);
-    expect(todoItem.find('li').length).toBe(1);
+    expect(todoItem.find('input').length).toBe(1);
   });
 
   describe('Todo item change call prop function', () => {

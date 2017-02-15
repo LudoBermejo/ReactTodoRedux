@@ -1,5 +1,6 @@
 exports[`TodosFilter  renders properly 1`] = `
-<div>
+<div
+  className="container__header">
   <div>
     <input
       onChange={[Function]}
@@ -10,6 +11,7 @@ exports[`TodosFilter  renders properly 1`] = `
     <input
       onChange={[Function]}
       type="checkbox" />
+     Show completed todos
   </label>
 </div>
 `;

@@ -5,7 +5,10 @@
       "root": ["./app/components"],
       "alias": {
         "AppStyles": "./app/styles/app.scss",
-        "TodoAPI": "./app/api/TodoAPI.jsx"
+        "TodoAPI": "./app/api/TodoAPI.jsx",
+        "actions": "./app/redux/actions/actions.jsx",
+        "reducers": "./app/redux/reducers/reducers.jsx",
+        "reduxStore": "./app/redux/store/store.jsx"
       }
     }]
   ]

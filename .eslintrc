@@ -1,14 +1,36 @@
 {
-	"extends": "airbnb",
-	"rules": {
-		"func-names": ["error", "never"],
-		"comma-dangle": "off", // Not to require a comma after the last line of JSON
-		"prefer-template": "error", // Template string rather than string concatenation
-		"max-params": ["error", 5], // To enforce config objects instead of long argument list
-		"max-statements": ["error", 75], // Function should have 75 statements at most
-		"max-len": ["error", 100] // Max line length  }
-	},
-	"env": {
-		"browser": true
-	}
+  "extends": "airbnb",
+  "rules": {
+    "func-names": [
+      "error",
+      "never"
+    ],
+    "comma-dangle": "off",
+    // Not to require a comma after the last line of JSON
+    "prefer-template": "error",
+    // Template string rather than string concatenation
+    "max-params": [
+      "error",
+      5
+    ],
+    // To enforce config objects instead of long argument list
+    "max-statements": [
+      "error",
+      75
+    ],
+    // Function should have 75 statements at most
+    "max-len": [
+      "error",
+      100
+    ]
+    // Max line length  }
+  },
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  }
 }
