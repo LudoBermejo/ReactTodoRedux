@@ -30,3 +30,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 );
+
+import './playground/firebase/index';
